@@ -53,6 +53,10 @@ public class Pilot extends IRobotAdapter {
     /** This method is called repeatedly. **/
     //- + left & + - right
             /*
+
+
+            maze wall hugger
+
         readSensors(SENSORS_GROUP_ID6);
         readSensors(SENSORS_GROUP_ID101);
 
@@ -73,8 +77,12 @@ public class Pilot extends IRobotAdapter {
             driveDirect(-250, 250);
         }
              */
-    int[] lightBumpArr;
-    public void loop() throws ConnectionLostException {
+
+            /*
+
+
+            drag race
+
         readSensors(SENSORS_GROUP_ID6);
         readSensors(SENSORS_GROUP_ID101);
         lightBumpArr = getLightBumps();
@@ -123,7 +131,7 @@ public class Pilot extends IRobotAdapter {
                 driveDirect(0, 0);
                 SystemClock.sleep(100000);
             }*/
-        }
+
         /*if (getWallSignal() < 50){
             driveDirect(250, 50);
         }
@@ -133,6 +141,42 @@ public class Pilot extends IRobotAdapter {
         if ( lightBumpArr[0] > 200 || lightBumpArr[1] > 200 || lightBumpArr[2] > 200 || lightBumpArr[3] > 200 || lightBumpArr[4] > 200 ) {
             driveDirect(-250, 250);
         }*/
+        /*
+        160 reserved
+        161 force field
+        164 green
+        165 green + force field
+        168 red
+        169 red + force field
+        172 red + green
+        173 red + green + force field
+        0   idrk
+         */
+    int[] lightBumpArr;
+    public void loop() throws ConnectionLostException {
+        readSensors(SENSORS_GROUP_ID6);
+        dashboard.log("" + getInfraredByte());
+        driveDirect(250,175);
+        if(isBumpLeft()&&isBumpRight()) {
+            if (getWallSignal()>200){
+                driveDirect(-500,500);
+
+            }
+        }
+        else if (isBumpRight() ){
+            driveDirect(-500,-500);
+            SystemClock.sleep(100);
+            driveDirect(-500, 500);
+            SystemClock.sleep(376);
+        }
+        else if(isBumpLeft()){
+            driveDirect(-500,-500);
+            SystemClock.sleep(100);
+            driveDirect(500, -500);
+            SystemClock.sleep(376);
+        }
+
+        //SystemClock.sleep(552);
     }
 
     /**
