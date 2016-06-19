@@ -49,21 +49,27 @@ public class Pilot extends IRobotAdapter {
 
     /** This method is called repeatedly. **/
     //- + left & + - right
+    int[] lightBumpArr;
     public void loop() throws ConnectionLostException {
         readSensors(SENSORS_GROUP_ID6);
-        driveDirect(500,200);
-        if(isBumpRight()){
-            driveDirect(-250,400);
-            SystemClock.sleep(1000);
+        readSensors(SENSORS_GROUP_ID101);
 
+        driveDirect(250, 250);
+        lightBumpArr = getLightBumps();
+        dashboard.log("wall: " + getWallSignal());
+        dashboard.log("Light: " + lightBumpArr[3]);
+        for (int i = 0; i <= 5; i++) {
+            dashboard.log(i + ": " + lightBumpArr[i]);
         }
-        else if(isBumpRight()&&isBumpLeft()){
-            driveDirect(-500,500);
-            SystemClock.sleep(376);
-
+        if (getWallSignal() < 100){
+            driveDirect(250, 50);
         }
-
-
+        else if (getWallSignal() > 300){
+            driveDirect(50, 200);
+        }
+        if ( lightBumpArr[0] > 200 || lightBumpArr[1] > 200 || lightBumpArr[2] > 200 || lightBumpArr[3] > 200 || lightBumpArr[4] > 200 ) {
+            driveDirect(-250, 250);
+        }
     }
 
     /**
