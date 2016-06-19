@@ -42,15 +42,17 @@ public class Pilot extends IRobotAdapter {
     }
 
     /** This method is executed when the robot first starts up. **/
+    long startTime;
+    long endTime;
+    long backStartTime;
+    boolean forward = true;
     public void initialize() throws ConnectionLostException {
-
-
+        startTime = SystemClock.elapsedRealtime();
     }
 
     /** This method is called repeatedly. **/
     //- + left & + - right
-    int[] lightBumpArr;
-    public void loop() throws ConnectionLostException {
+            /*
         readSensors(SENSORS_GROUP_ID6);
         readSensors(SENSORS_GROUP_ID101);
 
@@ -70,6 +72,67 @@ public class Pilot extends IRobotAdapter {
         if ( lightBumpArr[0] > 200 || lightBumpArr[1] > 200 || lightBumpArr[2] > 200 || lightBumpArr[3] > 200 || lightBumpArr[4] > 200 ) {
             driveDirect(-250, 250);
         }
+             */
+    int[] lightBumpArr;
+    public void loop() throws ConnectionLostException {
+        readSensors(SENSORS_GROUP_ID6);
+        readSensors(SENSORS_GROUP_ID101);
+        lightBumpArr = getLightBumps();
+        dashboard.log("wall: " + getWallSignal());
+        for (int i = 0; i <= 5; i++) {
+            dashboard.log(i + ": " + lightBumpArr[i]);
+        }
+        if (forward) {
+            driveDirect(500, 500);
+            if (lightBumpArr[2] > 100 || lightBumpArr[3] > 100) {
+                endTime = SystemClock.elapsedRealtime();
+                dashboard.log("elapsed time: " + (endTime - startTime));
+                driveDirect(0, 0);
+                SystemClock.sleep(5000);
+                forward = false;
+            }
+            if (getWallSignal() < 2) {
+                driveDirect(500, 400);
+            } else if (getWallSignal() > 100) {
+                driveDirect(400, 500);
+            }
+        }
+        else if (!forward){
+            driveDirect(-500, 500);
+            SystemClock.sleep();
+            backStartTime = SystemClock.elapsedRealtime();
+            driveDirect(500, 500);
+            if (lightBumpArr[2] > 100 || lightBumpArr[3] > 100) {
+                endTime = SystemClock.elapsedRealtime();
+                dashboard.log("elapsed time: " + (endTime - startTime));
+                driveDirect(0, 0);
+                SystemClock.sleep(100000);
+            }
+            if (getWallSignal() < 2) {
+                driveDirect(500, 400);
+            } else if (getWallSignal() > 100) {
+                driveDirect(400, 500);
+            }
+            /*driveDirect(-500, -500);
+            if (getWallSignal() < 2) {
+                driveDirect(-500, -400);
+            } else if (getWallSignal() > 100) {
+                driveDirect(-400, -500);
+            }
+            if (SystemClock.elapsedRealtime() - backStartTime == endTime - startTime){
+                driveDirect(0, 0);
+                SystemClock.sleep(100000);
+            }*/
+        }
+        /*if (getWallSignal() < 50){
+            driveDirect(250, 50);
+        }
+        else if (getWallSignal() > 150){
+            driveDirect(50, 200);
+        }
+        if ( lightBumpArr[0] > 200 || lightBumpArr[1] > 200 || lightBumpArr[2] > 200 || lightBumpArr[3] > 200 || lightBumpArr[4] > 200 ) {
+            driveDirect(-250, 250);
+        }*/
     }
 
     /**
