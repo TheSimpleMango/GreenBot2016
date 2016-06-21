@@ -1,2 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/pre-dexed/debug/com.android.support-support-v4-22.1.1_76c8ed3295bb8a9c82c432eaf4c16e25b7de17a5.jar" />
+    </item>
+    <item
+        jar="/Users/MingDa/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/pre-dexed/debug/support-annotations-22.1.1_d6ddd1f8852a0056bef9cee69d3add0cd9080356.jar" />
+    </item>
+    <item
+        jar="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/pre-dexed/debug/internal_impl-22.1.1_151ae6060023a40ac7033aadaccb2da15d449577.jar" />
+    </item>
+    <item
+        jar="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/exploded-aar/Runner/iOIOiRobot2/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a32d96a81e0b238c5d0ce49db1f8dd23b455a3a1">
+        <dex dex="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/pre-dexed/debug/Runner-iOIOiRobot2-unspecified_835b7940326908f8d4337b2ed4861873a4540be3.jar" />
+    </item>
+    <item
+        jar="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/exploded-aar/Runner/iOIOLib/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6ebf03b80844ab79ed6704936567284e3a2dec4b">
+        <dex dex="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/intermediates/pre-dexed/debug/Runner-iOIOLib-unspecified_6286d9164b1b177fb69ea3a526afb612eef365e1.jar" />
+    </item>
+
+</items>
