@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="armeabi-v7a,armeabi"
+    api-level="8"
+    density="hdpi"
+    format="7"
+    timestamp="1466542080055971000"
+    token="-593153155245124974" >
+
+    <task
+        name="javac"
+        duration="702" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="193" />
+    <task
+        name="verifier"
+        duration="97" />
+
+    <artifact
+        location="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/outputs/apk/GreenBot2016-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="1466542080055971000" >
+        <artifact
+            location="/Users/MingDa/Desktop/Programming/IARoC/Runner/GreenBot2016/build/outputs/apk/GreenBot2016-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>
