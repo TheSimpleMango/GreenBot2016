@@ -61,6 +61,7 @@ public class Pilot extends IRobotAdapter {
     public void loop() throws ConnectionLostException {
         readSensors(SENSORS_GROUP_ID6);
         readSensors(SENSORS_GROUP_ID101);
+        readSensors(SENSORS_GROUP_ID100);
         lightBumpArr = getLightBumps();
         dashboard.log("wall: " + getWallSignal());
         for (int i = 0; i <= 5; i++) {
@@ -72,7 +73,6 @@ public class Pilot extends IRobotAdapter {
                 endTime = SystemClock.elapsedRealtime();
                 dashboard.log("elapsed time: " + (endTime - startTime));
                 driveDirect(0, 0);
-                SystemClock.sleep(500);
                 forward = false;
             }
             // too close so curve left
@@ -81,9 +81,9 @@ public class Pilot extends IRobotAdapter {
                 driveDirect(450, 500);
             }
             // too far
-            else if (getWallSignal() < 5) {
+            else if (getWallSignal() < 1) {
                 dashboard.log("++++++++++++++++++++++++++++right");
-                driveDirect(500, 450);
+                driveDirect(500, 465);
             }
         }
         else if (!forward) {
@@ -106,15 +106,15 @@ public class Pilot extends IRobotAdapter {
             }
 
             // too far
-            else if (getWallSignal() < 5) {
+            else if (getWallSignal() < 1) {
                 dashboard.log("++++++++++++++++++++++++++++left");
-                driveDirect(-500, -475);
+                driveDirect(-500, -480);
             }
-            if (SystemClock.elapsedRealtime() - backStartTime >= endTime - startTime) {
+            if (SystemClock.elapsedRealtime() - backStartTime >= ((endTime - startTime) - 15)) {
                 dashboard.log(SystemClock.elapsedRealtime() + "; " + backStartTime + "; " + endTime + "; " + startTime);
                 dashboard.log((SystemClock.elapsedRealtime() - backStartTime) + "; " + (endTime - startTime));
                 driveDirect(0, 0);
-                SystemClock.sleep(100000);
+                SystemClock.sleep(1000000);
             }
         }
     }
