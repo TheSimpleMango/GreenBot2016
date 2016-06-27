@@ -45,7 +45,7 @@ public class Pilot extends IRobotAdapter {
      * This method is executed when the robot first starts up.
      **/
     long startTime;
-
+    int x;
     public void initialize() throws ConnectionLostException {
         startTime = SystemClock.elapsedRealtime();
     }
@@ -76,12 +76,12 @@ public class Pilot extends IRobotAdapter {
                 forward = false;
             }
             // too close so curve left
-            else if (getWallSignal() > 10 || lightBumpArr[5] > 50 || lightBumpArr[4] > 50) {
+            else if (getWallSignal() > 8 || lightBumpArr[5] > 50 || lightBumpArr[4] > 50) {
                 dashboard.log("-----------------------------left");
                 driveDirect(450, 500);
             }
             // too far
-            else if (getWallSignal() < 1) {
+            else if (getWallSignal() < 2) {
                 dashboard.log("++++++++++++++++++++++++++++right");
                 driveDirect(500, 465);
             }
@@ -99,22 +99,23 @@ public class Pilot extends IRobotAdapter {
                 startedBack = true;
             }
             driveDirect(-500, -500);
-            // too close so curve left
-            if (getWallSignal() > 10 || lightBumpArr[5] > 50 || lightBumpArr[4] > 50) {
-                dashboard.log("-----------------------------right");
-                driveDirect(-425, -500);
+            // too close
+            if (getWallSignal() > 8 || lightBumpArr[5] > 50 || lightBumpArr[4] > 50) {
+                dashboard.log("-----------------------------left");
+                driveDirect(-460, -500);
             }
 
             // too far
-            else if (getWallSignal() < 1) {
-                dashboard.log("++++++++++++++++++++++++++++left");
-                driveDirect(-500, -480);
+            else if (getWallSignal() < 2) {
+                dashboard.log("++++++++++++++++++++++++++++right");
+                driveDirect(-500, -465);
             }
             if (SystemClock.elapsedRealtime() - backStartTime >= ((endTime - startTime) - 15)) {
                 dashboard.log(SystemClock.elapsedRealtime() + "; " + backStartTime + "; " + endTime + "; " + startTime);
                 dashboard.log((SystemClock.elapsedRealtime() - backStartTime) + "; " + (endTime - startTime));
                 driveDirect(0, 0);
-                SystemClock.sleep(1000000);
+                SystemClock.sleep(100000);
+                System.exit(0);
             }
         }
     }
